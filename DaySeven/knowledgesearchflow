@@ -1,0 +1,2069 @@
+{
+  "type": "AssistantFlow",
+  "assistantName": "Tenjin001-372",
+  "assistantDisplayName": "KnowledgeSearch",
+  "assistantId": 372,
+  "exportDateTime": "2023-12-07T10:29:20.5613825Z",
+  "siteVersion": "2.43.1.89",
+  "tenantId": 138,
+  "tenantName": "Carole ITSM Tenant",
+  "resourceGroupName": "Tenjin001",
+  "flows": [
+    {
+      "name": "Main",
+      "description": "",
+      "flow": {
+        "begin": {
+          "type": "Begin",
+          "actions": [
+            {
+              "type": "AssignVariables",
+              "variableAssignments": [
+                {
+                  "expression": "=''",
+                  "assignment": {
+                    "type": "CreateVariable",
+                    "variable": {
+                      "id": "99603dac-881d-4af9-9285-bcdcbfbc6e23",
+                      "name": "strNewQuestion",
+                      "scope": "Dialog",
+                      "variableType": "String"
+                    }
+                  }
+                },
+                {
+                  "expression": "=''",
+                  "assignment": {
+                    "type": "CreateVariable",
+                    "variable": {
+                      "id": "fcd1a37a-d99a-43b9-8d06-efe25ad101b4",
+                      "name": "strSearchPhrase",
+                      "scope": "Dialog",
+                      "variableType": "String"
+                    }
+                  }
+                },
+                {
+                  "expression": "=${$tenjin-flow-global-user-tenjinuser$}.Email",
+                  "assignment": {
+                    "type": "UpdateVariable",
+                    "variableRef": "$01ad0e47-068e-4b41-94ba-c6cddf79b33f$"
+                  }
+                },
+                {
+                  "expression": "=split(${$tenjin-flow-global-user-name$}, ' ')[0]",
+                  "assignment": {
+                    "type": "CreateVariable",
+                    "variable": {
+                      "id": "b53f1e06-8659-417b-99c6-202af04a03d0",
+                      "name": "strFirstName",
+                      "scope": "Dialog",
+                      "variableType": "String"
+                    }
+                  }
+                }
+              ],
+              "id": "tj-49c596e7-05f4-4178-b1fd-96f793ff28ad",
+              "title": "",
+              "comment": ""
+            },
+            {
+              "type": "DeclareVariables",
+              "variableDeclarations": [
+                {
+                  "variable": {
+                    "id": "65f7a333-b8b6-4a56-a8f0-9ab6cd7844e3",
+                    "name": "booStartJourney",
+                    "scope": "Conversation",
+                    "variableType": "Boolean"
+                  }
+                },
+                {
+                  "variable": {
+                    "id": "f743002f-2aed-42a2-8a0a-c5a1c4caadfb",
+                    "name": "dashboard",
+                    "scope": "Conversation",
+                    "variableType": "Object"
+                  }
+                },
+                {
+                  "variable": {
+                    "id": "dd1fc287-3798-4de5-beeb-23cefb97f507",
+                    "name": "strUserLanguage",
+                    "scope": "Conversation",
+                    "variableType": "String"
+                  }
+                },
+                {
+                  "variable": {
+                    "id": "2a66f858-8c20-4379-97a5-b80cc413f8f9",
+                    "name": "strPrefText",
+                    "scope": "Conversation",
+                    "variableType": "String"
+                  }
+                },
+                {
+                  "variable": {
+                    "id": "45de53ce-bb12-43ee-9b49-ba704dd122c4",
+                    "name": "objPrefText",
+                    "scope": "Conversation",
+                    "variableType": "Object"
+                  }
+                }
+              ],
+              "id": "tj-bcebffd0-f521-4825-ac81-266f0cfe5890",
+              "title": "",
+              "comment": ""
+            },
+            {
+              "type": "MultiIf",
+              "cases": [
+                {
+                  "id": "82960510-9253-49f8-88eb-1cbea83924dd",
+                  "expression": "=exists(${$f743002f-2aed-42a2-8a0a-c5a1c4caadfb$})",
+                  "actions": []
+                }
+              ],
+              "defaultActions": [
+                {
+                  "type": "AssignVariables",
+                  "variableAssignments": [
+                    {
+                      "expression": "{}",
+                      "assignment": {
+                        "type": "UpdateVariable",
+                        "variableRef": "$f743002f-2aed-42a2-8a0a-c5a1c4caadfb$"
+                      }
+                    }
+                  ],
+                  "id": "tj-482a99f7-382a-415a-a3df-c2763497be2d",
+                  "title": "",
+                  "comment": ""
+                }
+              ],
+              "id": "tj-a2a191c0-ab2a-4fb3-bae7-b6cd43a03b6e",
+              "title": "",
+              "comment": ""
+            },
+            {
+              "type": "MultiIf",
+              "cases": [
+                {
+                  "id": "e3483224-7042-44bc-9a04-7577dec15eb5",
+                  "expression": "=empty(${$65f7a333-b8b6-4a56-a8f0-9ab6cd7844e3$})",
+                  "actions": [
+                    {
+                      "type": "AssignVariables",
+                      "variableAssignments": [
+                        {
+                          "expression": "true",
+                          "assignment": {
+                            "type": "UpdateVariable",
+                            "variableRef": "$65f7a333-b8b6-4a56-a8f0-9ab6cd7844e3$"
+                          }
+                        }
+                      ],
+                      "id": "tj-8a5bb06f-96d8-459a-b6a8-7b4086b2f18d",
+                      "title": "",
+                      "comment": ""
+                    }
+                  ]
+                }
+              ],
+              "defaultActions": [],
+              "id": "tj-ba1621f4-7bf3-4c11-98d2-48a3b0b8b93f",
+              "title": "",
+              "comment": ""
+            },
+            {
+              "type": "Container",
+              "actions": [
+                {
+                  "type": "StoreBlobGet",
+                  "scope": "Assistant",
+                  "keyExpression": "APIDetails",
+                  "variableAssignment": {
+                    "type": "CreateVariable",
+                    "variable": {
+                      "id": "db4a9ece-2495-4b9b-a606-1d4037d87749",
+                      "name": "objAPI",
+                      "scope": "Dialog",
+                      "variableType": "Object"
+                    }
+                  },
+                  "id": "tj-b72bd5b6-7992-46fe-b2f1-d25d243d8350",
+                  "title": "",
+                  "comment": ""
+                },
+                {
+                  "type": "AssignVariableFromJson",
+                  "jsonVariableRef": "$db4a9ece-2495-4b9b-a606-1d4037d87749$",
+                  "variableAssignments": [
+                    {
+                      "jsonPath": "$.APIURL",
+                      "assignment": {
+                        "type": "CreateVariable",
+                        "variable": {
+                          "id": "438daab5-be98-4526-8f29-b21c32dc5d72",
+                          "name": "APIURL",
+                          "scope": "Dialog",
+                          "variableType": "String"
+                        }
+                      }
+                    },
+                    {
+                      "jsonPath": "$.APIToken",
+                      "assignment": {
+                        "type": "CreateVariable",
+                        "variable": {
+                          "id": "fb4ba3ba-5ac9-4b15-95ed-a4a4dd549f59",
+                          "name": "APIToken",
+                          "scope": "Dialog",
+                          "variableType": "String"
+                        }
+                      }
+                    }
+                  ],
+                  "id": "tj-acd2aa47-a16c-4235-9b78-026856eaedf7",
+                  "title": "",
+                  "comment": ""
+                }
+              ],
+              "id": "tj-ab3a274e-cb12-425f-8b5e-422452a504f6",
+              "title": "getApiDetails",
+              "comment": ""
+            },
+            {
+              "type": "Container",
+              "actions": [
+                {
+                  "type": "CallProjectFlow",
+                  "flowRef": "ServiceNow.GetValidatedUser",
+                  "arguments": [],
+                  "returns": [
+                    {
+                      "returnRef": "d00bd921-5c32-403b-9abd-764597d2fb91",
+                      "assignment": {
+                        "type": "CreateVariable",
+                        "variable": {
+                          "id": "44587b40-7a3e-4fae-a959-f16212eb04ee",
+                          "name": "serviceNowUser",
+                          "scope": "Dialog",
+                          "variableType": "Object"
+                        }
+                      }
+                    }
+                  ],
+                  "id": "tj-3b230189-86fc-4dca-8a79-ca22f5f37630",
+                  "title": "",
+                  "comment": ""
+                },
+                {
+                  "type": "CallProjectFlow",
+                  "flowRef": "ServiceNow.Set_Notifications",
+                  "arguments": [],
+                  "returns": [],
+                  "id": "tj-85951319-8e8a-4614-b74b-181c1c274ed8",
+                  "title": "",
+                  "comment": ""
+                },
+                {
+                  "type": "CallProjectFlow",
+                  "flowRef": "ServiceNow.Check_actions",
+                  "arguments": [],
+                  "returns": [],
+                  "id": "tj-3c057b40-e3e8-436e-99e2-ce145d5aa1e3",
+                  "title": "",
+                  "comment": ""
+                }
+              ],
+              "id": "tj-98671a85-25dd-47d7-9465-7b5468e90b73",
+              "title": "getServiceNowDetails",
+              "comment": ""
+            },
+            {
+              "type": "MultiIf",
+              "cases": [
+                {
+                  "id": "b2b7b37e-0b4e-402f-84a9-37690d028744",
+                  "expression": "=${$65f7a333-b8b6-4a56-a8f0-9ab6cd7844e3$}==true",
+                  "actions": [
+                    {
+                      "type": "MultiIf",
+                      "cases": [
+                        {
+                          "id": "8597aa87-9497-4785-a461-8748bc2faecf",
+                          "expression": "=true==false",
+                          "actions": [
+                            {
+                              "type": "CallProjectFlow",
+                              "flowRef": "ServiceNow.getMajorIncidents",
+                              "arguments": [
+                                {
+                                  "paramRef": "21175909-8f41-466b-9497-1af2311bf407",
+                                  "paramVariableType": "String",
+                                  "value": ""
+                                },
+                                {
+                                  "paramRef": "6aa68e3c-5433-450c-b102-9204b352063b",
+                                  "paramVariableType": "String",
+                                  "value": ""
+                                },
+                                {
+                                  "paramRef": "d6f5bea2-26fc-4053-8ef9-1868992a9748",
+                                  "paramVariableType": "String",
+                                  "value": ""
+                                },
+                                {
+                                  "paramRef": "9306dbc5-c625-477f-9c91-c3d9e2a655d1",
+                                  "paramVariableType": "String",
+                                  "value": ""
+                                },
+                                {
+                                  "paramRef": "a03825ac-c07c-4dee-bc45-e434249fc852",
+                                  "paramVariableType": "String",
+                                  "value": ""
+                                }
+                              ],
+                              "returns": [],
+                              "id": "tj-3147f6a8-eab6-4e34-a736-130ae6c70b15",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        }
+                      ],
+                      "defaultActions": [],
+                      "id": "tj-3047f1f7-824e-4bee-bbeb-85316255c962",
+                      "title": "",
+                      "comment": ""
+                    }
+                  ]
+                }
+              ],
+              "defaultActions": [],
+              "id": "tj-de331c00-6cf0-49c8-b5ec-76fff4fb7c6f",
+              "title": "",
+              "comment": ""
+            },
+            {
+              "type": "StoreBlobGet",
+              "scope": "Assistant",
+              "keyExpression": "TenjinKB_ButtonRaiseTicket",
+              "variableAssignment": {
+                "type": "CreateVariable",
+                "variable": {
+                  "id": "e8371457-2d84-4125-ab17-44f659690efa",
+                  "name": "strRaiseTicket",
+                  "scope": "Dialog",
+                  "variableType": "Object"
+                }
+              },
+              "id": "tj-3ef87c72-f27a-4721-9f53-8ccfc7088f68",
+              "title": "",
+              "comment": ""
+            },
+            {
+              "type": "StoreBlobGet",
+              "scope": "Assistant",
+              "keyExpression": "TenjinKB_ButtonSkip",
+              "variableAssignment": {
+                "type": "CreateVariable",
+                "variable": {
+                  "id": "c4b4d7a9-4bbc-496a-b6fb-458543606ce2",
+                  "name": "strSkip",
+                  "scope": "Dialog",
+                  "variableType": "Object"
+                }
+              },
+              "id": "tj-5a527481-6430-4867-9cf2-7fab18fc8214",
+              "title": "",
+              "comment": ""
+            },
+            {
+              "type": "StoreBlobGet",
+              "scope": "Assistant",
+              "keyExpression": "TenjinKB_ButtonExpertAssist",
+              "variableAssignment": {
+                "type": "CreateVariable",
+                "variable": {
+                  "id": "13924153-9109-49e7-92e7-8458eff9f1e6",
+                  "name": "strExpertAssist",
+                  "scope": "Dialog",
+                  "variableType": "Object"
+                }
+              },
+              "id": "tj-e6272689-836e-4f51-9858-ec010971c234",
+              "title": "",
+              "comment": ""
+            },
+            {
+              "type": "While",
+              "conditionExpression": "=1==1",
+              "actions": [
+                {
+                  "type": "Container",
+                  "actions": [
+                    {
+                      "type": "AssignVariables",
+                      "variableAssignments": [
+                        {
+                          "expression": "=''",
+                          "assignment": {
+                            "type": "CreateVariable",
+                            "variable": {
+                              "id": "c2ad3ff8-ba88-4c73-8c2d-70ba09c2a5d1",
+                              "name": "strFoundCLU",
+                              "scope": "Dialog",
+                              "variableType": "String"
+                            }
+                          }
+                        },
+                        {
+                          "expression": "0",
+                          "assignment": {
+                            "type": "CreateVariable",
+                            "variable": {
+                              "id": "305513c3-5db2-41ac-b7cd-52c221c03f99",
+                              "name": "numConfScore",
+                              "scope": "Dialog",
+                              "variableType": "Number"
+                            }
+                          }
+                        },
+                        {
+                          "expression": "false",
+                          "assignment": {
+                            "type": "CreateVariable",
+                            "variable": {
+                              "id": "941b9d0e-7a52-4225-b9d5-42ba400f4c12",
+                              "name": "booCLUProcessed",
+                              "scope": "Dialog",
+                              "variableType": "Boolean"
+                            }
+                          }
+                        },
+                        {
+                          "expression": "false",
+                          "assignment": {
+                            "type": "CreateVariable",
+                            "variable": {
+                              "id": "14563284-0805-4a3f-9371-730683311fc0",
+                              "name": "booHelp",
+                              "scope": "Dialog",
+                              "variableType": "Boolean"
+                            }
+                          }
+                        }
+                      ],
+                      "id": "tj-0b5fc604-f5b8-46cc-9480-85bb1d26b6fd",
+                      "title": "",
+                      "comment": ""
+                    },
+                    {
+                      "type": "MultiIf",
+                      "cases": [
+                        {
+                          "id": "eb948e85-b71c-42fd-916c-205b01a2b99b",
+                          "expression": "=length(${$99603dac-881d-4af9-9285-bcdcbfbc6e23$}) > 0",
+                          "actions": [
+                            {
+                              "type": "AssignVariables",
+                              "variableAssignments": [
+                                {
+                                  "expression": "false",
+                                  "assignment": {
+                                    "type": "CreateVariable",
+                                    "variable": {
+                                      "id": "94c65ca2-4df1-43f9-bfd3-cd36b733c269",
+                                      "name": "booFollowOnNewQuestion",
+                                      "scope": "Dialog",
+                                      "variableType": "Boolean"
+                                    }
+                                  }
+                                }
+                              ],
+                              "id": "tj-614cc188-6b53-413a-a20a-8db066f9dbef",
+                              "title": "",
+                              "comment": ""
+                            },
+                            {
+                              "type": "MultiIf",
+                              "cases": [
+                                {
+                                  "id": "2c458d1f-1543-41e3-bf6e-bb77751d7294",
+                                  "expression": "=contains(${$99603dac-881d-4af9-9285-bcdcbfbc6e23$}, '[FOLLOW_ON]')",
+                                  "actions": [
+                                    {
+                                      "type": "AssignVariables",
+                                      "variableAssignments": [
+                                        {
+                                          "expression": "true",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$94c65ca2-4df1-43f9-bfd3-cd36b733c269$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-ee888205-9204-45fb-982c-2c7d043f4fa7",
+                                      "title": "Initialise follow on new question boolean",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "AssignVariables",
+                                      "variableAssignments": [
+                                        {
+                                          "expression": "=trim(replace(${$99603dac-881d-4af9-9285-bcdcbfbc6e23$}, '[FOLLOW_ON]:', ''))",
+                                          "assignment": {
+                                            "type": "CreateVariable",
+                                            "variable": {
+                                              "id": "0aa906d8-44ea-426e-88dd-d3d4d847c73a",
+                                              "name": "strQnaDocumentId",
+                                              "scope": "Dialog",
+                                              "variableType": "String"
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-bc66f2a3-9fc6-4e99-b0d5-e8ce60567204",
+                                      "title": "Extract qnadocumentid from new question string",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "CallProjectFlow",
+                                      "flowRef": "TenjinGPT.processQnaDisplaySimpleFollowOn",
+                                      "arguments": [
+                                        {
+                                          "paramRef": "62ae90e5-b257-4e09-8913-430fc2992c7e",
+                                          "paramVariableType": "String",
+                                          "value": "=${$0aa906d8-44ea-426e-88dd-d3d4d847c73a$}"
+                                        }
+                                      ],
+                                      "returns": [
+                                        {
+                                          "returnRef": "5375e495-2ca4-4cca-ba10-8be4f7f8f088",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-aaf1e48a-9442-4f70-9b66-4b244a6f01b5",
+                                      "title": "Display follow on answer",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "AssignVariables",
+                                      "variableAssignments": [
+                                        {
+                                          "expression": "=${$99603dac-881d-4af9-9285-bcdcbfbc6e23$}",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-5b610f4f-6be6-44c7-8671-2c41d5d1c554",
+                                      "title": "Set output of project flow to new question",
+                                      "comment": ""
+                                    }
+                                  ]
+                                }
+                              ],
+                              "defaultActions": [
+                                {
+                                  "type": "AssignVariables",
+                                  "variableAssignments": [
+                                    {
+                                      "expression": "=${$99603dac-881d-4af9-9285-bcdcbfbc6e23$}",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$"
+                                      }
+                                    }
+                                  ],
+                                  "id": "tj-72feaef0-1ab1-4e18-a061-f96791bc4140",
+                                  "title": "Assign search phrase to the new question",
+                                  "comment": ""
+                                },
+                                {
+                                  "type": "CallProjectFlow",
+                                  "flowRef": "Customer_Actions.functionGrabCLU",
+                                  "arguments": [
+                                    {
+                                      "paramRef": "3d597d47-cdb4-41a3-b4dd-fd6a865dfefc",
+                                      "paramVariableType": "String",
+                                      "value": "=${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}"
+                                    }
+                                  ],
+                                  "returns": [
+                                    {
+                                      "returnRef": "787e7104-ab64-4ac1-8596-df152b3d0144",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$c2ad3ff8-ba88-4c73-8c2d-70ba09c2a5d1$"
+                                      }
+                                    },
+                                    {
+                                      "returnRef": "9fd6319e-e7f7-403a-95e3-f785e4ae741f",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$305513c3-5db2-41ac-b7cd-52c221c03f99$"
+                                      }
+                                    }
+                                  ],
+                                  "id": "tj-bd6edf85-4d61-4ea5-b424-9caefd25440e",
+                                  "title": "",
+                                  "comment": ""
+                                },
+                                {
+                                  "type": "CallProjectFlow",
+                                  "flowRef": "Customer_Actions.processCLUAction",
+                                  "arguments": [
+                                    {
+                                      "paramRef": "4968f4e9-10fe-4a1b-a6a4-e92cb7ec8d1d",
+                                      "paramVariableType": "String",
+                                      "value": "=${$c2ad3ff8-ba88-4c73-8c2d-70ba09c2a5d1$}"
+                                    }
+                                  ],
+                                  "returns": [
+                                    {
+                                      "returnRef": "6025465f-718e-4095-beb6-c3fb596f570b",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$941b9d0e-7a52-4225-b9d5-42ba400f4c12$"
+                                      }
+                                    },
+                                    {
+                                      "returnRef": "ed7b13bc-f5b6-410a-9110-b650e985e785",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$14563284-0805-4a3f-9371-730683311fc0$"
+                                      }
+                                    }
+                                  ],
+                                  "id": "tj-3af131e7-3628-4215-87e1-48dec5c364ac",
+                                  "title": "",
+                                  "comment": ""
+                                }
+                              ],
+                              "id": "tj-bde17c18-d447-4b0b-9fd9-c6af89a095cc",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        }
+                      ],
+                      "defaultActions": [
+                        {
+                          "type": "CallProjectFlow",
+                          "flowRef": "TenjinGPT.functionQuestionArrays",
+                          "arguments": [
+                            {
+                              "paramRef": "c8a86712-096a-42a0-b264-56103a082280",
+                              "paramVariableType": "Boolean",
+                              "value": "=${$65f7a333-b8b6-4a56-a8f0-9ab6cd7844e3$}"
+                            }
+                          ],
+                          "returns": [
+                            {
+                              "returnRef": "29189664-3a6a-4c6b-a3c0-c0f806f6a978",
+                              "assignment": {
+                                "type": "UpdateVariable",
+                                "variableRef": "$65f7a333-b8b6-4a56-a8f0-9ab6cd7844e3$"
+                              }
+                            },
+                            {
+                              "returnRef": "8a9e72d9-2fc5-4943-ab41-0a4eb338871e",
+                              "assignment": {
+                                "type": "UpdateVariable",
+                                "variableRef": "$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$"
+                              }
+                            }
+                          ],
+                          "id": "tj-d56f1bf7-3331-487d-bece-8c75a5a3d832",
+                          "title": "",
+                          "comment": ""
+                        },
+                        {
+                          "type": "MultiIf",
+                          "cases": [
+                            {
+                              "id": "1aa9552b-02f4-4957-b60e-73078d710d80",
+                              "expression": "=${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}!='tickets'",
+                              "actions": [
+                                {
+                                  "type": "CallProjectFlow",
+                                  "flowRef": "Customer_Actions.functionGrabCLU",
+                                  "arguments": [
+                                    {
+                                      "paramRef": "3d597d47-cdb4-41a3-b4dd-fd6a865dfefc",
+                                      "paramVariableType": "String",
+                                      "value": "=${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}"
+                                    }
+                                  ],
+                                  "returns": [
+                                    {
+                                      "returnRef": "787e7104-ab64-4ac1-8596-df152b3d0144",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$c2ad3ff8-ba88-4c73-8c2d-70ba09c2a5d1$"
+                                      }
+                                    },
+                                    {
+                                      "returnRef": "9fd6319e-e7f7-403a-95e3-f785e4ae741f",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$305513c3-5db2-41ac-b7cd-52c221c03f99$"
+                                      }
+                                    }
+                                  ],
+                                  "id": "tj-8b074fad-c425-4357-9830-a267193187b1",
+                                  "title": "",
+                                  "comment": ""
+                                },
+                                {
+                                  "type": "CallProjectFlow",
+                                  "flowRef": "Customer_Actions.processCLUAction",
+                                  "arguments": [
+                                    {
+                                      "paramRef": "4968f4e9-10fe-4a1b-a6a4-e92cb7ec8d1d",
+                                      "paramVariableType": "String",
+                                      "value": "=${$c2ad3ff8-ba88-4c73-8c2d-70ba09c2a5d1$}"
+                                    }
+                                  ],
+                                  "returns": [
+                                    {
+                                      "returnRef": "6025465f-718e-4095-beb6-c3fb596f570b",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$941b9d0e-7a52-4225-b9d5-42ba400f4c12$"
+                                      }
+                                    },
+                                    {
+                                      "returnRef": "ed7b13bc-f5b6-410a-9110-b650e985e785",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$14563284-0805-4a3f-9371-730683311fc0$"
+                                      }
+                                    }
+                                  ],
+                                  "id": "tj-a7e45891-4a3f-4c48-8207-55217b0504f9",
+                                  "title": "",
+                                  "comment": ""
+                                }
+                              ]
+                            }
+                          ],
+                          "defaultActions": [],
+                          "id": "tj-ffee9351-0ac8-429a-baa8-eab9169b817d",
+                          "title": "",
+                          "comment": ""
+                        }
+                      ],
+                      "id": "tj-c48cdc8e-d76e-43ab-a649-e9e64501529e",
+                      "title": "If new question was asked",
+                      "comment": ""
+                    },
+                    {
+                      "type": "MultiIf",
+                      "cases": [
+                        {
+                          "id": "c438df68-30d6-42c8-9c23-2dab619cd3aa",
+                          "expression": "=${$941b9d0e-7a52-4225-b9d5-42ba400f4c12$}",
+                          "actions": [
+                            {
+                              "type": "MultiIf",
+                              "cases": [
+                                {
+                                  "id": "6e9e0506-26b5-4b45-bbc6-4f89f04fe8d3",
+                                  "expression": "=${$14563284-0805-4a3f-9371-730683311fc0$}",
+                                  "actions": [
+                                    {
+                                      "type": "AssignVariables",
+                                      "variableAssignments": [
+                                        {
+                                          "expression": "help",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-67e00e30-5fb6-4029-8938-cbec0d12f99a",
+                                      "title": "",
+                                      "comment": ""
+                                    }
+                                  ]
+                                }
+                              ],
+                              "defaultActions": [
+                                {
+                                  "type": "AssignVariables",
+                                  "variableAssignments": [
+                                    {
+                                      "expression": "[CLU_PROCESSED]",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$"
+                                      }
+                                    }
+                                  ],
+                                  "id": "tj-987fc2bb-5937-4200-af75-e484deac6849",
+                                  "title": "",
+                                  "comment": ""
+                                }
+                              ],
+                              "id": "tj-da050eed-2511-4138-b055-9f8ce2243892",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        }
+                      ],
+                      "defaultActions": [],
+                      "id": "tj-47cc7a3e-5731-4932-b642-3d526c796bfd",
+                      "title": "",
+                      "comment": ""
+                    }
+                  ],
+                  "id": "tj-a8109a55-ff20-41fe-a048-6d30e8e2e855",
+                  "title": "The main question ",
+                  "comment": ""
+                },
+                {
+                  "type": "Container",
+                  "actions": [
+                    {
+                      "type": "MultiIf",
+                      "cases": [
+                        {
+                          "id": "a03290b0-b0f6-4f51-a674-e38cec802667",
+                          "expression": "=toLower(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$})=='tickets' || toLower(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$})=='ticket'",
+                          "actions": [
+                            {
+                              "type": "CallProjectFlow",
+                              "flowRef": "Customer_Actions.redirectTicketOptions",
+                              "arguments": [
+                                {
+                                  "paramRef": "cb676d84-e59f-4596-9e3a-f43194da0be8",
+                                  "paramVariableType": "String",
+                                  "value": "tickets"
+                                }
+                              ],
+                              "returns": [],
+                              "id": "tj-0c199366-a1ae-4b41-8e13-bc2afa6e7e10",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        },
+                        {
+                          "id": "b3f8dc75-a0c5-432b-bd5a-474b0e12e10e",
+                          "expression": "=${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}=='signout'",
+                          "actions": [
+                            {
+                              "type": "StoreBlobGet",
+                              "scope": "Assistant",
+                              "keyExpression": "TenjinKB_MessageVerifyEmail",
+                              "variableAssignment": {
+                                "type": "CreateVariable",
+                                "variable": {
+                                  "id": "2ee50a5c-fa45-4f6a-992f-8f2d1739a405",
+                                  "name": "strVerifyEmailMessage",
+                                  "scope": "Dialog",
+                                  "variableType": "Object"
+                                }
+                              },
+                              "id": "tj-c55fe6ee-d596-43e4-ad5d-da00c0d99b07",
+                              "title": "",
+                              "comment": ""
+                            },
+                            {
+                              "type": "Container",
+                              "actions": [
+                                {
+                                  "type": "MultiIf",
+                                  "cases": [
+                                    {
+                                      "id": "4b2f81c9-9315-4e25-9e9b-07f94d72cbc0",
+                                      "expression": "=empty(${$dd1fc287-3798-4de5-beeb-23cefb97f507$})",
+                                      "actions": [
+                                        {
+                                          "type": "CallProjectFlow",
+                                          "flowRef": "Translation.DetectUsersLanguage",
+                                          "arguments": [
+                                            {
+                                              "paramRef": "24f2908d-f9c6-425a-9736-efa939773744",
+                                              "paramVariableType": "String",
+                                              "value": "=${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}"
+                                            }
+                                          ],
+                                          "returns": [
+                                            {
+                                              "returnRef": "80746374-d2b3-4316-8198-5a69e51d8221",
+                                              "assignment": {
+                                                "type": "UpdateVariable",
+                                                "variableRef": "$dd1fc287-3798-4de5-beeb-23cefb97f507$"
+                                              }
+                                            }
+                                          ],
+                                          "id": "tj-b925ab74-8371-4a58-949f-d956110dbb86",
+                                          "title": "",
+                                          "comment": ""
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "defaultActions": [],
+                                  "id": "tj-688fde30-02a0-450c-b177-94ca71b04ec8",
+                                  "title": "",
+                                  "comment": ""
+                                },
+                                {
+                                  "type": "MultiIf",
+                                  "cases": [
+                                    {
+                                      "id": "f5463199-dcb3-4ba0-aac0-9a6b529e8917",
+                                      "expression": "=${$dd1fc287-3798-4de5-beeb-23cefb97f507$}=='en'",
+                                      "actions": []
+                                    }
+                                  ],
+                                  "defaultActions": [
+                                    {
+                                      "type": "CallProjectFlow",
+                                      "flowRef": "Translation.FromEng",
+                                      "arguments": [
+                                        {
+                                          "paramRef": "731dc658-9c2f-41fd-8b83-04fee388ff2b",
+                                          "paramVariableType": "String",
+                                          "value": "=${$2ee50a5c-fa45-4f6a-992f-8f2d1739a405$}"
+                                        },
+                                        {
+                                          "paramRef": "bc91d71c-653c-4f9a-8777-2445dc8c5c89",
+                                          "paramVariableType": "String",
+                                          "value": "=${$dd1fc287-3798-4de5-beeb-23cefb97f507$}"
+                                        }
+                                      ],
+                                      "returns": [
+                                        {
+                                          "returnRef": "f9200682-f44b-4b80-8000-306d9d6e8a70",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$2ee50a5c-fa45-4f6a-992f-8f2d1739a405$"
+                                          }
+                                        },
+                                        {
+                                          "returnRef": "cfb0c2ac-dde8-4155-b9e6-3e8d27f72eb3",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$2a66f858-8c20-4379-97a5-b80cc413f8f9$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-9005f9cb-76d1-40f4-9e3f-ba587a781254",
+                                      "title": "",
+                                      "comment": ""
+                                    }
+                                  ],
+                                  "id": "tj-fa1826bc-b2fe-4b6d-98da-ecc4b8228c6a",
+                                  "title": "",
+                                  "comment": ""
+                                }
+                              ],
+                              "id": "tj-4e31b3f6-8194-4cdf-8ab6-b0ad7f5bfccd",
+                              "title": "Translate",
+                              "comment": ""
+                            },
+                            {
+                              "type": "EmailVerification",
+                              "questionText": "${$2ee50a5c-fa45-4f6a-992f-8f2d1739a405$}",
+                              "variableAssignment": {
+                                "type": "CreateVariable",
+                                "variable": {
+                                  "id": "01ad0e47-068e-4b41-94ba-c6cddf79b33f",
+                                  "name": "strEmail",
+                                  "scope": "User",
+                                  "variableType": "String"
+                                }
+                              },
+                              "id": "tj-c85be1b6-0760-4bc3-beb8-316267246946",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        },
+                        {
+                          "id": "0d814c85-d0a6-4e12-9932-62b9653ad4ed",
+                          "expression": "=contains(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$} , '[FOLLOW_ON]')",
+                          "actions": []
+                        },
+                        {
+                          "id": "5e6d4d93-e3d5-4915-be2d-f52fe78d9d0b",
+                          "expression": "=toLower(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$})=='like'",
+                          "actions": [
+                            {
+                              "type": "AssignVariables",
+                              "variableAssignments": [
+                                {
+                                  "expression": "=''",
+                                  "assignment": {
+                                    "type": "UpdateVariable",
+                                    "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                  }
+                                }
+                              ],
+                              "id": "tj-9fb3b0d1-89b6-461a-94e9-f858cee6b7b2",
+                              "title": "Reset new question",
+                              "comment": ""
+                            }
+                          ]
+                        },
+                        {
+                          "id": "4c4c100d-09b9-4995-a306-b61aa986c874",
+                          "expression": "=toLower(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$})=='dislike' && ${$94c65ca2-4df1-43f9-bfd3-cd36b733c269$}",
+                          "actions": [
+                            {
+                              "type": "AssignVariables",
+                              "variableAssignments": [
+                                {
+                                  "expression": "=''",
+                                  "assignment": {
+                                    "type": "UpdateVariable",
+                                    "variableRef": "$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$"
+                                  }
+                                }
+                              ],
+                              "id": "tj-b3b38f57-d362-4125-8925-875a92d23d50",
+                              "title": "Initialise search phrase variable",
+                              "comment": ""
+                            },
+                            {
+                              "type": "StoreBlobGet",
+                              "scope": "Assistant",
+                              "keyExpression": "TenjinKB_MessageNotFoundMenu",
+                              "variableAssignment": {
+                                "type": "CreateVariable",
+                                "variable": {
+                                  "id": "7c6ecbbd-0b76-42e2-b701-a08833addc05",
+                                  "name": "strNotFoundMessage",
+                                  "scope": "Dialog",
+                                  "variableType": "Object"
+                                }
+                              },
+                              "id": "tj-c33eadff-6f6e-4854-a901-8286e7c9cecc",
+                              "title": "",
+                              "comment": ""
+                            },
+                            {
+                              "type": "Container",
+                              "actions": [
+                                {
+                                  "type": "MultiIf",
+                                  "cases": [
+                                    {
+                                      "id": "4b2f81c9-9315-4e25-9e9b-07f94d72cbc0",
+                                      "expression": "=empty(${$dd1fc287-3798-4de5-beeb-23cefb97f507$})",
+                                      "actions": [
+                                        {
+                                          "type": "CallProjectFlow",
+                                          "flowRef": "Translation.DetectUsersLanguage",
+                                          "arguments": [
+                                            {
+                                              "paramRef": "24f2908d-f9c6-425a-9736-efa939773744",
+                                              "paramVariableType": "String",
+                                              "value": "=${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}"
+                                            }
+                                          ],
+                                          "returns": [
+                                            {
+                                              "returnRef": "80746374-d2b3-4316-8198-5a69e51d8221",
+                                              "assignment": {
+                                                "type": "UpdateVariable",
+                                                "variableRef": "$dd1fc287-3798-4de5-beeb-23cefb97f507$"
+                                              }
+                                            }
+                                          ],
+                                          "id": "tj-3d5f3a8a-8439-4552-84ad-c80b5b78f54d",
+                                          "title": "",
+                                          "comment": ""
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "defaultActions": [],
+                                  "id": "tj-195dc56b-4a08-440c-a165-d3d61b4d5be4",
+                                  "title": "",
+                                  "comment": ""
+                                },
+                                {
+                                  "type": "MultiIf",
+                                  "cases": [
+                                    {
+                                      "id": "f5463199-dcb3-4ba0-aac0-9a6b529e8917",
+                                      "expression": "=${$dd1fc287-3798-4de5-beeb-23cefb97f507$}=='en'",
+                                      "actions": []
+                                    }
+                                  ],
+                                  "defaultActions": [
+                                    {
+                                      "type": "CallProjectFlow",
+                                      "flowRef": "Translation.FromEng",
+                                      "arguments": [
+                                        {
+                                          "paramRef": "731dc658-9c2f-41fd-8b83-04fee388ff2b",
+                                          "paramVariableType": "String",
+                                          "value": "=${$7c6ecbbd-0b76-42e2-b701-a08833addc05$}"
+                                        },
+                                        {
+                                          "paramRef": "bc91d71c-653c-4f9a-8777-2445dc8c5c89",
+                                          "paramVariableType": "String",
+                                          "value": "=${$dd1fc287-3798-4de5-beeb-23cefb97f507$}"
+                                        }
+                                      ],
+                                      "returns": [
+                                        {
+                                          "returnRef": "f9200682-f44b-4b80-8000-306d9d6e8a70",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$7c6ecbbd-0b76-42e2-b701-a08833addc05$"
+                                          }
+                                        },
+                                        {
+                                          "returnRef": "cfb0c2ac-dde8-4155-b9e6-3e8d27f72eb3",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$2a66f858-8c20-4379-97a5-b80cc413f8f9$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-148795fa-0452-4093-a9dc-dc9deb3ed359",
+                                      "title": "",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "CallProjectFlow",
+                                      "flowRef": "Translation.FromEng",
+                                      "arguments": [
+                                        {
+                                          "paramRef": "731dc658-9c2f-41fd-8b83-04fee388ff2b",
+                                          "paramVariableType": "String",
+                                          "value": "=${$e8371457-2d84-4125-ab17-44f659690efa$}"
+                                        },
+                                        {
+                                          "paramRef": "bc91d71c-653c-4f9a-8777-2445dc8c5c89",
+                                          "paramVariableType": "String",
+                                          "value": "=${$dd1fc287-3798-4de5-beeb-23cefb97f507$}"
+                                        }
+                                      ],
+                                      "returns": [
+                                        {
+                                          "returnRef": "f9200682-f44b-4b80-8000-306d9d6e8a70",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$e8371457-2d84-4125-ab17-44f659690efa$"
+                                          }
+                                        },
+                                        {
+                                          "returnRef": "cfb0c2ac-dde8-4155-b9e6-3e8d27f72eb3",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$2a66f858-8c20-4379-97a5-b80cc413f8f9$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-74300ad4-f90e-4b08-9e23-0af1cf7f482c",
+                                      "title": "",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "CallProjectFlow",
+                                      "flowRef": "Translation.FromEng",
+                                      "arguments": [
+                                        {
+                                          "paramRef": "731dc658-9c2f-41fd-8b83-04fee388ff2b",
+                                          "paramVariableType": "String",
+                                          "value": "=${$13924153-9109-49e7-92e7-8458eff9f1e6$}"
+                                        },
+                                        {
+                                          "paramRef": "bc91d71c-653c-4f9a-8777-2445dc8c5c89",
+                                          "paramVariableType": "String",
+                                          "value": "=${$dd1fc287-3798-4de5-beeb-23cefb97f507$}"
+                                        }
+                                      ],
+                                      "returns": [
+                                        {
+                                          "returnRef": "f9200682-f44b-4b80-8000-306d9d6e8a70",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$13924153-9109-49e7-92e7-8458eff9f1e6$"
+                                          }
+                                        },
+                                        {
+                                          "returnRef": "cfb0c2ac-dde8-4155-b9e6-3e8d27f72eb3",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$2a66f858-8c20-4379-97a5-b80cc413f8f9$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-5af1ee29-83ae-4bae-9271-3d115e7fb453",
+                                      "title": "",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "CallProjectFlow",
+                                      "flowRef": "Translation.FromEng",
+                                      "arguments": [
+                                        {
+                                          "paramRef": "731dc658-9c2f-41fd-8b83-04fee388ff2b",
+                                          "paramVariableType": "String",
+                                          "value": "=${$c4b4d7a9-4bbc-496a-b6fb-458543606ce2$}"
+                                        },
+                                        {
+                                          "paramRef": "bc91d71c-653c-4f9a-8777-2445dc8c5c89",
+                                          "paramVariableType": "String",
+                                          "value": "=${$dd1fc287-3798-4de5-beeb-23cefb97f507$}"
+                                        }
+                                      ],
+                                      "returns": [
+                                        {
+                                          "returnRef": "f9200682-f44b-4b80-8000-306d9d6e8a70",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$c4b4d7a9-4bbc-496a-b6fb-458543606ce2$"
+                                          }
+                                        },
+                                        {
+                                          "returnRef": "cfb0c2ac-dde8-4155-b9e6-3e8d27f72eb3",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$2a66f858-8c20-4379-97a5-b80cc413f8f9$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-a25b4e78-8f77-41ca-b70a-4995d8357d70",
+                                      "title": "",
+                                      "comment": ""
+                                    }
+                                  ],
+                                  "id": "tj-d674c7ea-5aec-46df-be19-cda7571d2407",
+                                  "title": "",
+                                  "comment": ""
+                                }
+                              ],
+                              "id": "tj-8f731ea5-70cf-4ae8-918d-eaae288a4ad4",
+                              "title": "Translate",
+                              "comment": ""
+                            },
+                            {
+                              "type": "Question",
+                              "questionText": "${$7c6ecbbd-0b76-42e2-b701-a08833addc05$}",
+                              "inputType": {
+                                "type": "Choice",
+                                "inputChoices": [
+                                  {
+                                    "type": "ChoiceOptionStatic",
+                                    "text": "${$e8371457-2d84-4125-ab17-44f659690efa$}",
+                                    "intent": "ticket",
+                                    "utterances": [],
+                                    "isInterruptible": false,
+                                    "id": "cd0e549f-c280-40db-9326-efce889706a4"
+                                  },
+                                  {
+                                    "type": "ChoiceOptionStatic",
+                                    "text": "${$13924153-9109-49e7-92e7-8458eff9f1e6$}",
+                                    "intent": "expert",
+                                    "utterances": [],
+                                    "isInterruptible": false,
+                                    "id": "8d623d46-260e-424b-ac9a-94fffbb2664e"
+                                  },
+                                  {
+                                    "type": "ChoiceOptionStatic",
+                                    "text": "${$c4b4d7a9-4bbc-496a-b6fb-458543606ce2$}",
+                                    "intent": "skipped",
+                                    "utterances": [],
+                                    "isInterruptible": false,
+                                    "id": "8cd031b6-1abb-454d-b0a3-95b8a8d5bcf6"
+                                  }
+                                ],
+                                "acceptUnmatchedResponse": true
+                              },
+                              "variableAssignment": {
+                                "type": "CreateVariable",
+                                "variable": {
+                                  "id": "3297a482-31e3-4950-ba92-e1a18cdd696d",
+                                  "name": "strNotFound",
+                                  "scope": "Dialog",
+                                  "variableType": "String"
+                                }
+                              },
+                              "isInterruptable": false,
+                              "id": "tj-eab7fe97-e792-4052-89ef-887db1bc21a5",
+                              "title": "",
+                              "comment": ""
+                            },
+                            {
+                              "type": "Switch",
+                              "conditionVariableRef": "$3297a482-31e3-4950-ba92-e1a18cdd696d$",
+                              "cases": [
+                                {
+                                  "id": "56fe32a8-fb6b-4d09-9f19-7a1e3323df38",
+                                  "value": "ticket",
+                                  "actions": [
+                                    {
+                                      "type": "CallProjectFlow",
+                                      "flowRef": "ServiceNow.ServiceNow_Functions",
+                                      "arguments": [
+                                        {
+                                          "paramRef": "a2d5ab13-577e-417f-8c59-917488d53664",
+                                          "paramVariableType": "Object",
+                                          "value": "=${$44587b40-7a3e-4fae-a959-f16212eb04ee$}"
+                                        },
+                                        {
+                                          "paramRef": "c4ce82ca-4984-402e-be0c-d53b9c490d78",
+                                          "paramVariableType": "String",
+                                          "value": "ticket"
+                                        }
+                                      ],
+                                      "returns": [],
+                                      "id": "tj-ab643e3c-f981-4d4a-842e-bef6c12e3590",
+                                      "title": "",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "AssignVariables",
+                                      "variableAssignments": [
+                                        {
+                                          "expression": "=''",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-cf4d29e3-8527-4ba5-8e71-07ec9cdd5788",
+                                      "title": "Reset new question",
+                                      "comment": ""
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "707c3a51-f89f-40f8-8637-060f8f1ad3bf",
+                                  "value": "expert",
+                                  "actions": [
+                                    {
+                                      "type": "CallProjectFlow",
+                                      "flowRef": "TenjinGPT.processTenjinQueryExpertAssist",
+                                      "arguments": [
+                                        {
+                                          "paramRef": "bfd9532f-6821-490d-b7d8-3f5eaf8756bd",
+                                          "paramVariableType": "String",
+                                          "value": ""
+                                        }
+                                      ],
+                                      "returns": [],
+                                      "id": "tj-b37cc7f0-d0c6-4841-acca-397c5ca9d883",
+                                      "title": "Submit blank question to Expert Assist",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "AssignVariables",
+                                      "variableAssignments": [
+                                        {
+                                          "expression": "=''",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-3e1ade0e-412c-4aa4-84bb-ceac01f73a68",
+                                      "title": "Reset new question",
+                                      "comment": ""
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "8b29b0b1-a1e5-4f2f-87f7-20a37f21ce46",
+                                  "value": "skipped",
+                                  "actions": [
+                                    {
+                                      "type": "AssignVariables",
+                                      "variableAssignments": [
+                                        {
+                                          "expression": "=''",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-3ef28feb-f925-4158-8936-5e10c9f746ab",
+                                      "title": "",
+                                      "comment": ""
+                                    }
+                                  ]
+                                }
+                              ],
+                              "defaultActions": [
+                                {
+                                  "type": "AssignVariables",
+                                  "variableAssignments": [
+                                    {
+                                      "expression": "=${$3297a482-31e3-4950-ba92-e1a18cdd696d$}",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                      }
+                                    },
+                                    {
+                                      "expression": "false",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$94c65ca2-4df1-43f9-bfd3-cd36b733c269$"
+                                      }
+                                    }
+                                  ],
+                                  "id": "tj-5ec1cfb8-9437-4433-a427-9dbbe8f06642",
+                                  "title": "Set new question to the question from user, reset follow on boolean",
+                                  "comment": ""
+                                }
+                              ],
+                              "id": "tj-bb944416-c442-43ef-a667-15f54cb64c91",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        },
+                        {
+                          "id": "07e6e95a-58fe-4ca9-b5b4-4e3cf252493a",
+                          "expression": "=${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}=='[CLU_PROCESSED]'",
+                          "actions": [
+                            {
+                              "type": "AssignVariables",
+                              "variableAssignments": [
+                                {
+                                  "expression": "=''",
+                                  "assignment": {
+                                    "type": "UpdateVariable",
+                                    "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                  }
+                                }
+                              ],
+                              "id": "tj-8e924d1a-72a3-49d2-ab42-77b788699c79",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        },
+                        {
+                          "id": "1d3e9625-a3bd-4fa6-92d5-c7c5e5d266ae",
+                          "expression": "=toLower(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$})=='skipped'",
+                          "actions": [
+                            {
+                              "type": "AssignVariables",
+                              "variableAssignments": [
+                                {
+                                  "expression": "=''",
+                                  "assignment": {
+                                    "type": "UpdateVariable",
+                                    "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                  }
+                                }
+                              ],
+                              "id": "tj-89e739c0-4f75-46d0-b0ea-1d3789d48a6a",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        },
+                        {
+                          "id": "e2996cb6-ae24-432c-94b8-6b874e8132b8",
+                          "expression": "=toLower(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$})=='walkups' || toLower(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$})=='walkup'",
+                          "actions": [
+                            {
+                              "type": "CallProjectFlow",
+                              "flowRef": "ServiceNow.ServiceNow_Functions",
+                              "arguments": [
+                                {
+                                  "paramRef": "a2d5ab13-577e-417f-8c59-917488d53664",
+                                  "paramVariableType": "Object",
+                                  "value": "=${$44587b40-7a3e-4fae-a959-f16212eb04ee$}"
+                                },
+                                {
+                                  "paramRef": "c4ce82ca-4984-402e-be0c-d53b9c490d78",
+                                  "paramVariableType": "String",
+                                  "value": "walkups"
+                                }
+                              ],
+                              "returns": [],
+                              "id": "tj-d73e82d0-948c-4fd2-8c16-1b0d9ef4f245",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        },
+                        {
+                          "id": "52aa87b8-1f0e-48ee-87fe-ad9e98a68bfa",
+                          "expression": "=toLower(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$})=='catalog' || toLower(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$})=='catalogue'",
+                          "actions": [
+                            {
+                              "type": "CallProjectFlow",
+                              "flowRef": "ServiceNow.ServiceNow_Functions",
+                              "arguments": [
+                                {
+                                  "paramRef": "a2d5ab13-577e-417f-8c59-917488d53664",
+                                  "paramVariableType": "Object",
+                                  "value": "=${$44587b40-7a3e-4fae-a959-f16212eb04ee$}"
+                                },
+                                {
+                                  "paramRef": "c4ce82ca-4984-402e-be0c-d53b9c490d78",
+                                  "paramVariableType": "String",
+                                  "value": "catalog"
+                                }
+                              ],
+                              "returns": [],
+                              "id": "tj-4665dff4-7976-4e7a-9aef-0c58cc23b382",
+                              "title": "",
+                              "comment": ""
+                            }
+                          ]
+                        }
+                      ],
+                      "defaultActions": [
+                        {
+                          "type": "MultiIf",
+                          "cases": [
+                            {
+                              "id": "da67230e-ab12-4bb2-9f68-6ccc70947578",
+                              "expression": "=${$14563284-0805-4a3f-9371-730683311fc0$}",
+                              "actions": [
+                                {
+                                  "type": "CallProjectFlow",
+                                  "flowRef": "TenjinGPT.processQnaTenantLevelBasicSearch",
+                                  "arguments": [
+                                    {
+                                      "paramRef": "bfd9532f-6821-490d-b7d8-3f5eaf8756bd",
+                                      "paramVariableType": "String",
+                                      "value": "=${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}"
+                                    },
+                                    {
+                                      "paramRef": "20dc736d-40e0-4443-93cf-5b05e6bb7422",
+                                      "paramVariableType": "String",
+                                      "value": "Knowledge Help"
+                                    }
+                                  ],
+                                  "returns": [
+                                    {
+                                      "returnRef": "e302fd72-270f-4f97-9181-f0ba42d33a1c",
+                                      "assignment": {
+                                        "type": "UpdateVariable",
+                                        "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                      }
+                                    }
+                                  ],
+                                  "id": "tj-bcdbd57e-b40a-407a-9eff-a7fa41522859",
+                                  "title": "",
+                                  "comment": ""
+                                }
+                              ]
+                            }
+                          ],
+                          "defaultActions": [
+                            {
+                              "type": "Container",
+                              "actions": [
+                                {
+                                  "type": "MultiIf",
+                                  "cases": [
+                                    {
+                                      "id": "45891a0b-f582-4ed8-8edd-f096cf7388e5",
+                                      "expression": "=length(${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}) <= 200",
+                                      "actions": [
+                                        {
+                                          "type": "StoreBlobGet",
+                                          "scope": "Assistant",
+                                          "keyExpression": "secretPromptAnalysis",
+                                          "variableAssignment": {
+                                            "type": "CreateVariable",
+                                            "variable": {
+                                              "id": "98c43df1-2fab-4b81-bbdb-34ae55545e92",
+                                              "name": "strSystemParamPromptAnalysis",
+                                              "scope": "Dialog",
+                                              "variableType": "Object"
+                                            }
+                                          },
+                                          "id": "tj-9fe58e55-4df7-44b3-9c69-bd8235f89077",
+                                          "title": "",
+                                          "comment": ""
+                                        },
+                                        {
+                                          "type": "SingleCompletion",
+                                          "systemInterpolation": "${$98c43df1-2fab-4b81-bbdb-34ae55545e92$}",
+                                          "userInterpolation": "${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}",
+                                          "maxTokensExpression": "1024",
+                                          "temperatureExpression": "0",
+                                          "resultVariableAssignment": {
+                                            "type": "CreateVariable",
+                                            "variable": {
+                                              "id": "2361a6fb-a808-4302-9ce3-87a807721988",
+                                              "name": "strPromptAnalysisResult",
+                                              "scope": "Dialog",
+                                              "variableType": "String"
+                                            }
+                                          },
+                                          "errorVariableAssignment": {
+                                            "type": "CreateVariable",
+                                            "variable": {
+                                              "id": "62996b41-f56e-4104-9d7e-c0cb5a0a76d7",
+                                              "name": "objErrors",
+                                              "scope": "Dialog",
+                                              "variableType": "Object"
+                                            }
+                                          },
+                                          "id": "tj-0ed0d7fc-e46d-44af-9b79-e74d1ed98780",
+                                          "title": "",
+                                          "comment": ""
+                                        },
+                                        {
+                                          "type": "MultiIf",
+                                          "cases": [
+                                            {
+                                              "id": "bf6ba89c-738c-4b87-a8fc-91019e67f2e2",
+                                              "expression": "=${$62996b41-f56e-4104-9d7e-c0cb5a0a76d7$}== null",
+                                              "actions": [
+                                                {
+                                                  "type": "MultiIf",
+                                                  "cases": [
+                                                    {
+                                                      "id": "7902ba55-473b-4e83-b795-e3e4c7cb2a6d",
+                                                      "expression": "=contains(toLower(${$2361a6fb-a808-4302-9ce3-87a807721988$}), '[query_good]')",
+                                                      "actions": [
+                                                        {
+                                                          "type": "CallProjectFlow",
+                                                          "flowRef": "TenjinGPT.processQnaTenjinDocsFindAnswer",
+                                                          "arguments": [
+                                                            {
+                                                              "paramRef": "bfd9532f-6821-490d-b7d8-3f5eaf8756bd",
+                                                              "paramVariableType": "String",
+                                                              "value": "=${$fcd1a37a-d99a-43b9-8d06-efe25ad101b4$}"
+                                                            }
+                                                          ],
+                                                          "returns": [
+                                                            {
+                                                              "returnRef": "e302fd72-270f-4f97-9181-f0ba42d33a1c",
+                                                              "assignment": {
+                                                                "type": "UpdateVariable",
+                                                                "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                                              }
+                                                            }
+                                                          ],
+                                                          "id": "tj-35ca2a48-ff4a-4f54-9206-b161c936ea38",
+                                                          "title": "Search Qna (then docs)",
+                                                          "comment": ""
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "id": "58b685db-46a5-4c77-9df3-92ec40ac59ee",
+                                                      "expression": "=contains(toLower(${$2361a6fb-a808-4302-9ce3-87a807721988$}), '[no_entity]')",
+                                                      "actions": [
+                                                        {
+                                                          "type": "StoreBlobGet",
+                                                          "scope": "Assistant",
+                                                          "keyExpression": "TenjinKB_MessageNoEntity",
+                                                          "variableAssignment": {
+                                                            "type": "CreateVariable",
+                                                            "variable": {
+                                                              "id": "1825313a-e39d-4dc4-af92-573d56fc8eaf",
+                                                              "name": "strNoEntity",
+                                                              "scope": "Dialog",
+                                                              "variableType": "Object"
+                                                            }
+                                                          },
+                                                          "id": "tj-3a80ee02-37ce-46cf-82d1-329f04c76ea8",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "SendMessage",
+                                                          "message": "${$1825313a-e39d-4dc4-af92-573d56fc8eaf$}",
+                                                          "id": "tj-6e781067-fca1-42e8-8bdb-6ad997a1bc94",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "AssignVariables",
+                                                          "variableAssignments": [
+                                                            {
+                                                              "expression": "=''",
+                                                              "assignment": {
+                                                                "type": "UpdateVariable",
+                                                                "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                                              }
+                                                            }
+                                                          ],
+                                                          "id": "tj-9a1f29ad-7e23-4f01-9c83-0aa57a70f50d",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "id": "5cbf060e-aeba-4f4b-8a9e-2e143646768a",
+                                                      "expression": "=contains(toLower(${$2361a6fb-a808-4302-9ce3-87a807721988$}), '[bad_instruction]')",
+                                                      "actions": [
+                                                        {
+                                                          "type": "StoreBlobGet",
+                                                          "scope": "Assistant",
+                                                          "keyExpression": "TenjinKB_MessageBadInstruction",
+                                                          "variableAssignment": {
+                                                            "type": "CreateVariable",
+                                                            "variable": {
+                                                              "id": "d57a50b8-c415-4ab1-8183-5acaf4f6d75b",
+                                                              "name": "strBadInstruction",
+                                                              "scope": "Dialog",
+                                                              "variableType": "Object"
+                                                            }
+                                                          },
+                                                          "id": "tj-cf1f2b8a-0465-4d56-abdb-e92627e88cf5",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "SendMessage",
+                                                          "message": "${$d57a50b8-c415-4ab1-8183-5acaf4f6d75b$}",
+                                                          "id": "tj-37e0ef45-4e6c-41e0-be12-6b3f6226d565",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "AssignVariables",
+                                                          "variableAssignments": [
+                                                            {
+                                                              "expression": "=''",
+                                                              "assignment": {
+                                                                "type": "UpdateVariable",
+                                                                "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                                              }
+                                                            }
+                                                          ],
+                                                          "id": "tj-a404f241-38ec-4029-9330-1ef6bdc25cb6",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "id": "27cbfbdc-7f12-4f73-ac76-440fdd5e0bb6",
+                                                      "expression": "=contains(toLower(${$2361a6fb-a808-4302-9ce3-87a807721988$}), '[style_change]')",
+                                                      "actions": [
+                                                        {
+                                                          "type": "StoreBlobGet",
+                                                          "scope": "Assistant",
+                                                          "keyExpression": "TenjinKB_MessageStyleChange",
+                                                          "variableAssignment": {
+                                                            "type": "CreateVariable",
+                                                            "variable": {
+                                                              "id": "3610b65a-f151-4541-bb3c-0d233c87fb63",
+                                                              "name": "strStyleChange",
+                                                              "scope": "Dialog",
+                                                              "variableType": "Object"
+                                                            }
+                                                          },
+                                                          "id": "tj-811b6ca3-ae4f-40f2-8e0e-b5c2e07c9aa9",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "SendMessage",
+                                                          "message": "${$3610b65a-f151-4541-bb3c-0d233c87fb63$}",
+                                                          "id": "tj-45e18637-a41f-425b-921e-27c424f6ded5",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "AssignVariables",
+                                                          "variableAssignments": [
+                                                            {
+                                                              "expression": "=''",
+                                                              "assignment": {
+                                                                "type": "UpdateVariable",
+                                                                "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                                              }
+                                                            }
+                                                          ],
+                                                          "id": "tj-3d7d76fd-216b-4d41-996a-504f4d8d1599",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "id": "3fb53e46-1c6f-4b4f-a2b2-c9240e39ba7b",
+                                                      "expression": "=contains(toLower(${$2361a6fb-a808-4302-9ce3-87a807721988$}), '[attempted_chat]')",
+                                                      "actions": [
+                                                        {
+                                                          "type": "StoreBlobGet",
+                                                          "scope": "Assistant",
+                                                          "keyExpression": "TenjinKB_MessageAttemptedChat",
+                                                          "variableAssignment": {
+                                                            "type": "CreateVariable",
+                                                            "variable": {
+                                                              "id": "79b7eebe-430b-4233-905f-5849141eabce",
+                                                              "name": "strAttemptedChat",
+                                                              "scope": "Dialog",
+                                                              "variableType": "Object"
+                                                            }
+                                                          },
+                                                          "id": "tj-62886f29-23f1-4442-8b49-7115f792891c",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "SendMessage",
+                                                          "message": "${$79b7eebe-430b-4233-905f-5849141eabce$}",
+                                                          "id": "tj-24be14f6-8251-4c4a-aeed-3559383f7f6b",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "AssignVariables",
+                                                          "variableAssignments": [
+                                                            {
+                                                              "expression": "=''",
+                                                              "assignment": {
+                                                                "type": "UpdateVariable",
+                                                                "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                                              }
+                                                            }
+                                                          ],
+                                                          "id": "tj-5400a0e8-53b9-40c8-97ed-187c6ce9f245",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "id": "81e55e40-b4cd-451b-8a22-ef0805e4f074",
+                                                      "expression": "=contains(toLower(${$2361a6fb-a808-4302-9ce3-87a807721988$}), '[assistant_question]')",
+                                                      "actions": [
+                                                        {
+                                                          "type": "StoreBlobGet",
+                                                          "scope": "Assistant",
+                                                          "keyExpression": "TenjinKB_MessageAssistantQuestion",
+                                                          "variableAssignment": {
+                                                            "type": "CreateVariable",
+                                                            "variable": {
+                                                              "id": "c37096ce-b1fa-44c8-9265-77af25bd7440",
+                                                              "name": "strAssistantQuestion",
+                                                              "scope": "Dialog",
+                                                              "variableType": "Object"
+                                                            }
+                                                          },
+                                                          "id": "tj-50168b9e-d945-4862-9f3c-a34129bd0963",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "SendMessage",
+                                                          "message": "${$c37096ce-b1fa-44c8-9265-77af25bd7440$}",
+                                                          "id": "tj-c6600345-33b3-457f-8a6e-5aca7f6f8935",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        },
+                                                        {
+                                                          "type": "AssignVariables",
+                                                          "variableAssignments": [
+                                                            {
+                                                              "expression": "=''",
+                                                              "assignment": {
+                                                                "type": "UpdateVariable",
+                                                                "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                                              }
+                                                            }
+                                                          ],
+                                                          "id": "tj-752e9c89-e004-4634-8a2f-6c3b8b81d170",
+                                                          "title": "",
+                                                          "comment": ""
+                                                        }
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "defaultActions": [
+                                                    {
+                                                      "type": "StoreBlobGet",
+                                                      "scope": "Assistant",
+                                                      "keyExpression": "TenjinKB_MessagePromptAnalysisFallback",
+                                                      "variableAssignment": {
+                                                        "type": "CreateVariable",
+                                                        "variable": {
+                                                          "id": "4b525789-0176-450b-af70-0036f43f7b0c",
+                                                          "name": "strFallback",
+                                                          "scope": "Dialog",
+                                                          "variableType": "Object"
+                                                        }
+                                                      },
+                                                      "id": "tj-0d7a165d-2564-421f-8017-e12c33f6d3fa",
+                                                      "title": "",
+                                                      "comment": ""
+                                                    },
+                                                    {
+                                                      "type": "SendMessage",
+                                                      "message": "${$4b525789-0176-450b-af70-0036f43f7b0c$}",
+                                                      "id": "tj-bc41a439-44f8-4364-9d28-2a65d003125e",
+                                                      "title": "",
+                                                      "comment": ""
+                                                    },
+                                                    {
+                                                      "type": "AssignVariables",
+                                                      "variableAssignments": [
+                                                        {
+                                                          "expression": "=''",
+                                                          "assignment": {
+                                                            "type": "UpdateVariable",
+                                                            "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                                          }
+                                                        }
+                                                      ],
+                                                      "id": "tj-d6ba640c-9b5a-44b1-8a90-8487c5eac2f3",
+                                                      "title": "",
+                                                      "comment": ""
+                                                    }
+                                                  ],
+                                                  "id": "tj-4f96f7f9-357f-4ffb-9fb7-9ebcca39ef76",
+                                                  "title": "",
+                                                  "comment": ""
+                                                }
+                                              ]
+                                            }
+                                          ],
+                                          "defaultActions": [
+                                            {
+                                              "type": "StoreBlobGet",
+                                              "scope": "Assistant",
+                                              "keyExpression": "TenjinKB_MessageGPTFailure",
+                                              "variableAssignment": {
+                                                "type": "CreateVariable",
+                                                "variable": {
+                                                  "id": "7ab6c87c-cc43-487b-9fef-d7e751ec447e",
+                                                  "name": "strGPTFailure",
+                                                  "scope": "Dialog",
+                                                  "variableType": "Object"
+                                                }
+                                              },
+                                              "id": "tj-13bbf4c9-95f3-459a-880e-5d89a5c7bd0d",
+                                              "title": "",
+                                              "comment": ""
+                                            },
+                                            {
+                                              "type": "SendMessage",
+                                              "message": "${$7ab6c87c-cc43-487b-9fef-d7e751ec447e$}",
+                                              "id": "tj-3c88ea07-3e2c-406f-bc47-4784761c8a90",
+                                              "title": "",
+                                              "comment": ""
+                                            },
+                                            {
+                                              "type": "AssignVariables",
+                                              "variableAssignments": [
+                                                {
+                                                  "expression": "=''",
+                                                  "assignment": {
+                                                    "type": "UpdateVariable",
+                                                    "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                                  }
+                                                }
+                                              ],
+                                              "id": "tj-f07f95e2-cead-43d5-b026-d2763e8a7f3c",
+                                              "title": "",
+                                              "comment": ""
+                                            }
+                                          ],
+                                          "id": "tj-3da03c7a-3cc6-489a-9eba-7deafe459bfa",
+                                          "title": "",
+                                          "comment": ""
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "defaultActions": [
+                                    {
+                                      "type": "StoreBlobGet",
+                                      "scope": "Assistant",
+                                      "keyExpression": "TenjinKB_MessagePromptTooLong",
+                                      "variableAssignment": {
+                                        "type": "CreateVariable",
+                                        "variable": {
+                                          "id": "0a39fc54-f496-4aa5-bc19-82c1038752ff",
+                                          "name": "strPromptLong",
+                                          "scope": "Dialog",
+                                          "variableType": "Object"
+                                        }
+                                      },
+                                      "id": "tj-2e27692a-392e-4308-b27d-f4bdf18c3460",
+                                      "title": "",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "SendMessage",
+                                      "message": "${$0a39fc54-f496-4aa5-bc19-82c1038752ff$}",
+                                      "id": "tj-961b8db9-4a62-4a70-859b-fda6e95b7e54",
+                                      "title": "",
+                                      "comment": ""
+                                    },
+                                    {
+                                      "type": "AssignVariables",
+                                      "variableAssignments": [
+                                        {
+                                          "expression": "=''",
+                                          "assignment": {
+                                            "type": "UpdateVariable",
+                                            "variableRef": "$99603dac-881d-4af9-9285-bcdcbfbc6e23$"
+                                          }
+                                        }
+                                      ],
+                                      "id": "tj-9265255f-958a-40bd-ad1b-6acfa6e5087f",
+                                      "title": "",
+                                      "comment": ""
+                                    }
+                                  ],
+                                  "id": "tj-230b96cb-d675-423b-adbe-fbfa75454b2c",
+                                  "title": "",
+                                  "comment": ""
+                                }
+                              ],
+                              "id": "tj-4da5085a-ec2a-43d9-a16e-123fa2438dd4",
+                              "title": "Prompt Analysis then search",
+                              "comment": ""
+                            }
+                          ],
+                          "id": "tj-c087554e-74dc-4589-9930-c00c064bb064",
+                          "title": "",
+                          "comment": ""
+                        }
+                      ],
+                      "id": "tj-a6285dcc-3380-4ebf-8e0d-4dd38dd8027b",
+                      "title": "",
+                      "comment": ""
+                    }
+                  ],
+                  "id": "tj-facebce2-c3db-419a-a55b-9cb52c03dd3a",
+                  "title": "Decide what to do after user asks question",
+                  "comment": ""
+                }
+              ],
+              "id": "tj-5e29cc06-fb31-4cd2-9583-421900a61965",
+              "title": "Endless loop - to allow for new question auto submit",
+              "comment": ""
+            }
+          ]
+        },
+        "inputParameters": [],
+        "returnParameters": []
+      },
+      "hash": "54F28093AC07E0AAE2819A4F7D99B8782C3117A4",
+      "lastEditedDateTime": "2023-12-06T16:22:55.437651+00:00"
+    }
+  ]
+}
